@@ -11,4 +11,6 @@ export declare const messageElement: HTMLDivElement;
 export declare const historyElement: HTMLDivElement;
 export declare const appBodyElement: HTMLDivElement;
 export declare const appHeadElement: HTMLDivElement;
+export declare const previewContainerElement: HTMLDivElement;
+export declare const messageContainerElement: HTMLDivElement;
 //# sourceMappingURL=interface.d.ts.map

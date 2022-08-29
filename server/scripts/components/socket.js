@@ -23,28 +23,39 @@ socket.on("connection", (client) => {
     client.on("3" /* Events.SendMultimedia */, (pack) => {
         const id = findConnIdByNickname(pack.meta.to);
         if (id) {
-            client.to(id).emit("1" /* Events.IncomingMultimedia */, pack);
+            if (id === client.id) {
+                return client.emit("5" /* Events.IncomingMessage */, pack);
+            }
+            return client.to(id).emit("1" /* Events.IncomingMultimedia */, pack);
         }
-        else {
-            client.emit("0" /* Events.MultimediaNotReceived */);
-        }
+        return client.emit("0" /* Events.MultimediaNotReceived */);
     });
     client.on("2" /* Events.MultimediaReceive */, (from) => {
         const id = findConnIdByNickname(from);
         if (id) {
-            client.to(from).emit("2" /* Events.MultimediaReceive */);
+            if (id === client.id) {
+                return client.emit("2" /* Events.MultimediaReceive */);
+            }
+            return client.to(from).emit("2" /* Events.MultimediaReceive */);
         }
     });
     client.on("7" /* Events.SendMessage */, (msg) => {
         const id = findConnIdByNickname(msg.meta.to);
         if (id) {
-            client.to(id).emit("5" /* Events.IncomingMessage */, msg);
+            if (id === client.id) {
+                return client.emit("5" /* Events.IncomingMessage */, msg);
+            }
+            return client.to(id).emit("5" /* Events.IncomingMessage */, msg);
         }
+        return client.emit("4" /* Events.MessageNotReceived */);
     });
     client.on("6" /* Events.MessageReceived */, (from) => {
         const id = findConnIdByNickname(from);
         if (id) {
-            client.to(from).emit("6" /* Events.MessageReceived */);
+            if (id === client.id) {
+                return client.emit("6" /* Events.MessageReceived */);
+            }
+            return client.to(from).emit("6" /* Events.MessageReceived */);
         }
     });
     client.on("10" /* Events.Match */, (nickname) => {

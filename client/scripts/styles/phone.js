@@ -1,51 +1,70 @@
-import { appBodyElement, historyElement, messageElement, previewElement } from "../components/interface.js";
-if (window.matchMedia("(max-width: 500px)").matches) {
-    const previewButton = document.createElement("button");
-    const historyButton = document.createElement("button");
-    const chatButton = document.createElement("button");
-    const container = document.createElement("div");
-    const toolbar = document.createElement("div");
-    const content = document.createElement("div");
-    appBodyElement.appendChild(container);
-    container.appendChild(toolbar);
-    container.appendChild(content);
-    content.appendChild(previewElement.parentElement);
-    content.appendChild(messageElement.parentElement);
-    content.appendChild(historyElement);
-    toolbar.appendChild(previewButton);
-    toolbar.appendChild(chatButton);
-    toolbar.appendChild(historyButton);
-    container.style.height = "100%";
-    container.style.width = "100%";
-    toolbar.style.display = "flex";
-    toolbar.style.padding = "5px";
-    toolbar.style.height = "8%";
-    content.style.height = "92%";
-    content.style.width = "100%";
-    previewButton.textContent = "preview";
-    chatButton.textContent = "chat";
-    historyButton.textContent = "archivos";
-    previewButton.className = "button";
-    chatButton.className = "button";
-    historyButton.className = "button";
-    previewButton.style.marginRight = "5px";
-    historyButton.style.marginLeft = "5px";
-    messageElement.parentElement.style.display = "none";
-    historyElement.style.display = "none";
-    previewButton.addEventListener("click", () => {
-        previewElement.parentElement.style.display = "block";
-        messageElement.parentElement.style.display = "none";
+import { appBodyElement, historyElement, messageContainerElement, previewContainerElement } from "../components/interface.js";
+import { createElement } from "../utils/elements.js";
+import { resetDesign } from "../utils/design.js";
+function applyPhoneDesign() {
+    if (window.matchMedia("(max-width: 500px)").matches) {
+        const showPreviewButton = createElement("button", ["button"]);
+        const showMessageButton = createElement("button", ["button"]);
+        const showHistoryButton = createElement("button", ["button"]);
+        const phoneDesignContainer = createElement("div");
+        const phoneDesignHeader = createElement("div");
+        const phoneDesignBody = createElement("div");
+        showPreviewButton.textContent = "Ver Vista Previa";
+        showMessageButton.textContent = "Ver Mensajes";
+        showHistoryButton.textContent = "Ver Archivos";
+        phoneDesignContainer.setAttribute("style", `
+                height: 100%;
+                width : 100%;
+            `);
+        phoneDesignHeader.setAttribute("style", `
+                display: flex;
+                padding: 5px ;
+                height : 8%  ;
+            `);
+        phoneDesignBody.setAttribute("style", `
+                height: 92% ;
+                width : 100%;
+            `);
+        showPreviewButton.setAttribute("style", `
+                margin-right: 5px;
+            `);
+        showHistoryButton.setAttribute("style", `
+                margin-left: 5px;
+            `);
+        phoneDesignContainer.appendChild(phoneDesignHeader);
+        phoneDesignContainer.appendChild(phoneDesignBody);
+        phoneDesignHeader.appendChild(showPreviewButton);
+        phoneDesignHeader.appendChild(showMessageButton);
+        phoneDesignHeader.appendChild(showHistoryButton);
+        phoneDesignBody.appendChild(previewContainerElement);
+        phoneDesignBody.appendChild(messageContainerElement);
+        phoneDesignBody.appendChild(historyElement);
+        showPreviewButton.addEventListener("click", () => {
+            previewContainerElement.style.display = "block";
+            messageContainerElement.style.display = "none";
+            historyElement.style.display = "none";
+        });
+        showMessageButton.addEventListener("click", () => {
+            messageContainerElement.style.display = "block";
+            previewContainerElement.style.display = "none";
+            historyElement.style.display = "none";
+        });
+        showHistoryButton.addEventListener("click", () => {
+            previewContainerElement.style.display = "none";
+            messageContainerElement.style.display = "none";
+            historyElement.style.display = "block";
+        });
+        previewContainerElement.style.display = "block";
+        messageContainerElement.style.display = "none";
         historyElement.style.display = "none";
-    });
-    chatButton.addEventListener("click", () => {
-        messageElement.parentElement.style.display = "block";
-        previewElement.parentElement.style.display = "none";
-        historyElement.style.display = "none";
-    });
-    historyButton.addEventListener("click", () => {
-        previewElement.parentElement.style.display = "none";
-        messageElement.parentElement.style.display = "none";
-        historyElement.style.display = "block";
-    });
+        appBodyElement.appendChild(phoneDesignContainer);
+    }
+    else {
+        resetDesign();
+    }
 }
+window.addEventListener("resize", () => {
+    applyPhoneDesign();
+});
+applyPhoneDesign();
 //# sourceMappingURL=phone.js.map

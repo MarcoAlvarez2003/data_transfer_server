@@ -15,3 +15,6 @@ export const historyElement = document.getElementById("history") as HTMLDivEleme
 
 export const appBodyElement = document.querySelector(".app__body") as HTMLDivElement;
 export const appHeadElement = document.querySelector(".app__head") as HTMLDivElement;
+
+export const previewContainerElement = previewElement.parentElement as HTMLDivElement;
+export const messageContainerElement = messageElement.parentElement as HTMLDivElement;

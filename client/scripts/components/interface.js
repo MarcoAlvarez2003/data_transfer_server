@@ -11,4 +11,6 @@ export const messageElement = document.getElementById("messages");
 export const historyElement = document.getElementById("history");
 export const appBodyElement = document.querySelector(".app__body");
 export const appHeadElement = document.querySelector(".app__head");
+export const previewContainerElement = previewElement.parentElement;
+export const messageContainerElement = messageElement.parentElement;
 //# sourceMappingURL=interface.js.map

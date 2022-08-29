@@ -42,17 +42,25 @@ socket.on("connection", (client) => {
         const id = findConnIdByNickname(pack.meta.to);
 
         if (id) {
-            client.to(id).emit(Events.IncomingMultimedia, pack);
-        } else {
-            client.emit(Events.MultimediaNotReceived);
+            if (id === client.id) {
+                return client.emit(Events.IncomingMessage, pack);
+            }
+
+            return client.to(id).emit(Events.IncomingMultimedia, pack);
         }
+
+        return client.emit(Events.MultimediaNotReceived);
     });
 
     client.on(Events.MultimediaReceive, (from: string) => {
         const id = findConnIdByNickname(from);
 
         if (id) {
-            client.to(from).emit(Events.MultimediaReceive);
+            if (id === client.id) {
+                return client.emit(Events.MultimediaReceive);
+            }
+
+            return client.to(from).emit(Events.MultimediaReceive);
         }
     });
 
@@ -60,15 +68,25 @@ socket.on("connection", (client) => {
         const id = findConnIdByNickname(msg.meta.to);
 
         if (id) {
-            client.to(id).emit(Events.IncomingMessage, msg);
+            if (id === client.id) {
+                return client.emit(Events.IncomingMessage, msg);
+            }
+
+            return client.to(id).emit(Events.IncomingMessage, msg);
         }
+
+        return client.emit(Events.MessageNotReceived);
     });
 
     client.on(Events.MessageReceived, (from: string) => {
         const id = findConnIdByNickname(from);
 
         if (id) {
-            client.to(from).emit(Events.MessageReceived);
+            if (id === client.id) {
+                return client.emit(Events.MessageReceived);
+            }
+
+            return client.to(from).emit(Events.MessageReceived);
         }
     });
 

@@ -1,6 +1,6 @@
 /* Imports */
 
-@import url("http://fonts.cdnfonts.com/css/roboto");
+@import url("./fonts/roboto.css");
 
 /* Normalizing */
 
@@ -8,6 +8,9 @@ body {
     overflow: hidden;
     height: 100vh;
     width: 100vw;
+}
+* {
+    color: #f00 !important;
 }
 
 .button,
@@ -110,7 +113,7 @@ div {
 .history {
     overflow-x: hidden;
     overflow-y: scroll;
-    padding: 5px;
+    padding: 10px 20px;
     height: 100%;
     width: 100%;
 }
@@ -156,10 +159,19 @@ div {
 
 .app__head {
     background-color: #111111;
+    border-bottom: 1px solid #f00;
 }
 
 .app__body {
     background-color: #1b1b1b;
+}
+
+.preview {
+    border-right: 1px solid #f00;
+}
+
+.history {
+    border-left: 1px solid #f00;
 }
 
 .preview,
@@ -169,7 +181,7 @@ div {
 
 .input {
     background-color: #000;
-    border: 1px solid #fff;
+    border: 1px solid #f00;
     outline: 0 solid #000;
     border-radius: 5px;
     color: #fff;
@@ -177,7 +189,7 @@ div {
 
 .image,
 .video {
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .image:hover,
@@ -185,15 +197,9 @@ div {
     box-shadow: 0 0 5px #fff;
 }
 
-.image:hover,
-.video:hover,
-.a:hover {
-    transform: scale(0.95);
-}
-
 .button {
     background-color: #000;
-    border: 1px solid #fff;
+    border: 1px solid #f00;
     outline: 0 solid #000;
     border-radius: 5px;
     color: #fff;
