@@ -24,7 +24,7 @@ socket.on("connection", (client) => {
         const id = findConnIdByNickname(pack.meta.to);
         if (id) {
             if (id === client.id) {
-                return client.emit("5" /* Events.IncomingMessage */, pack);
+                return client.emit("1" /* Events.IncomingMultimedia */, pack);
             }
             return client.to(id).emit("1" /* Events.IncomingMultimedia */, pack);
         }
