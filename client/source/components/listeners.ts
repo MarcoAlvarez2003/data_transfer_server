@@ -97,7 +97,7 @@ socketIdInputElement.addEventListener("change", () => {
     socket.emit(Events.UseNickname, socketIdInputElement.value);
 });
 
-clientNameInputElement.addEventListener("click", () => {
+clientNameInputElement.addEventListener("change", () => {
     localStorage.setItem("dss:username", clientNameInputElement.value);
 });
 
