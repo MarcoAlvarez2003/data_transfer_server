@@ -2,10 +2,10 @@
     "name": "data_transfer_server",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server/scripts/index.js",
     "type": "module",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node ."
     },
     "keywords": [],
     "author": "",
