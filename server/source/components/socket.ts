@@ -43,7 +43,7 @@ socket.on("connection", (client) => {
 
         if (id) {
             if (id === client.id) {
-                return client.emit(Events.IncomingMessage, pack);
+                return client.emit(Events.IncomingMultimedia, pack);
             }
 
             return client.to(id).emit(Events.IncomingMultimedia, pack);
