@@ -143,6 +143,10 @@ div {
 
 /* Utils */
 
+.div-stretch {
+    height: 100%;
+}
+
 .div-expand {
     width: 100%;
 }

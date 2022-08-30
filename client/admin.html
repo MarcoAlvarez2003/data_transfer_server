@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="shortcut icon" href="./assets/images/icon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" href="./styles/index.css" />
+
+        <meta charset="UTF-8" />
+
+        <title>Administrador de archivos</title>
+    </head>
+    <body>
+        <div class="app">
+            <div class="app__head">
+                <div class="div-pad div-expand div-stretch">
+                    <button class="button div-stretch" id="delete">Borrar</button>
+                </div>
+            </div>
+
+            <div class="app__body" style="display: flex; align-items: center; justify-content: center">
+                <div class="history" id="preview" style="width: 50%; border-right: 1px solid #f00"></div>
+            </div>
+        </div>
+
+        <script src="./scripts/pages/archives/index.js" type="module"></script>
+    </body>
+</html>
