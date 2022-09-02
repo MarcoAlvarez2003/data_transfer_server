@@ -1,8 +1,6 @@
-import { createFragmentFromDataBase, createMultimediaTemplate } from "../../utils/template.js";
-import { DelMedia, GetMedia } from "../../components/database.js";
-
-const deleteButtonElement = document.getElementById("delete") as HTMLButtonElement;
-const previewElement = document.getElementById("preview") as HTMLDivElement;
+import { deleteButtonElement, previewElement } from "./interface.js";
+import { createMultimediaTemplate } from "../../utils/template.js";
+import { GetMedia, DelMedia } from "../../components/database.js";
 
 window.addEventListener("load", async () => {
     let currentFileReference!: string | undefined;

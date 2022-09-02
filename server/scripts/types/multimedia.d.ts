@@ -4,4 +4,3 @@ export interface Multimedia {
     body: string;
     size: number;
 }
-//# sourceMappingURL=multimedia.d.ts.map

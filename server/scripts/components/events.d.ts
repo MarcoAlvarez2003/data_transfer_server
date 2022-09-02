@@ -13,4 +13,3 @@ export declare const enum Events {
     UseNickname = "11",
     NicknameUsed = "12"
 }
-//# sourceMappingURL=events.d.ts.map

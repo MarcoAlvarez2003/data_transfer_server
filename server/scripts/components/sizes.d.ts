@@ -5,4 +5,3 @@ export declare const enum Sizes {
     GigaByte = 1073741824,
     TeraByte = 1099511627776
 }
-//# sourceMappingURL=sizes.d.ts.map

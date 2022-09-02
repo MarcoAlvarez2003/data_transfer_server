@@ -1,4 +1,4 @@
-import { DIRNAME } from "./constants.js";
+import { DIRNAME } from "./vars.js";
 import express from "express";
 import path from "path";
 export const app = express();

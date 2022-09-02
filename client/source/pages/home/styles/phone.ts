@@ -1,6 +1,6 @@
-import { appBodyElement, historyElement, messageContainerElement, previewContainerElement } from "../components/interface.js";
-import { createElement } from "../utils/elements.js";
-import { resetDesign } from "../utils/design.js";
+import { appBodyElement, historyElement, messageContainerElement, previewContainerElement } from "../interface.js";
+import { createElement } from "../../../utils/elements.js";
+import { reset } from "./utils/reset.js";
 
 function applyPhoneDesign() {
     if (window.matchMedia("(max-width: 500px)").matches) {
@@ -90,7 +90,7 @@ function applyPhoneDesign() {
 
         appBodyElement.appendChild(phoneDesignContainer);
     } else {
-        resetDesign();
+        reset();
     }
 }
 

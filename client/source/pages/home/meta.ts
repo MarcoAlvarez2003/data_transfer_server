@@ -1,6 +1,6 @@
 import { connectionInputElement, messageInputElement, clientNameInputElement, connectionStateElement } from "./interface.js";
-import { MetaData } from "../types/metadata.js";
-import { Socket } from "../types/socket.js";
+import { MetaData } from "../../types/metadata.js";
+import { Socket } from "../../types/socket.js";
 
 export function GetConnectionId() {
     return connectionInputElement.value;

@@ -5,4 +5,3 @@ export interface Package {
     meta: MetaData;
     name: string;
 }
-//# sourceMappingURL=package.d.ts.map

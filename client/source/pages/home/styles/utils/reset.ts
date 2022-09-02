@@ -1,6 +1,6 @@
-import { appBodyElement, historyElement, messageContainerElement, previewContainerElement } from "../components/interface.js";
+import { appBodyElement, historyElement, messageContainerElement, previewContainerElement } from "../../interface.js";
 
-export function resetDesign() {
+export function reset() {
     Array.from(appBodyElement.children).forEach((children) => children.remove());
 
     appBodyElement.appendChild(previewContainerElement);

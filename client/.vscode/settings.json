@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/scripts": true
+    },
+    "javascript.suggest.paths": false
+}

@@ -4,4 +4,3 @@ export interface Message {
     name: string;
     body: string;
 }
-//# sourceMappingURL=message.d.ts.map

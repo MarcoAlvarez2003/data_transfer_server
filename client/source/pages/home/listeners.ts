@@ -11,16 +11,15 @@ import {
     messageElement,
 } from "./interface.js";
 
-import { createFragmentFromDataBase, createMultimediaTemplate, createMessageTemplate } from "../utils/template.js";
+import { createFragmentFromDataBase, createMultimediaTemplate, createMessageTemplate } from "../../utils/template.js";
 import { GetMessage, GetMeta, GetUserName, IsConnected, connectWhenReceivedData } from "./meta.js";
-import { SetMedia, CreateDataBase } from "./database.js";
-import { Message } from "../types/message.js";
-import { Package } from "../types/package.js";
-import { GetMediaSize } from "./fs.js";
+import { SetMedia, CreateDataBase } from "../../components/database.js";
+import { GetMediaSize, GetMedia } from "./fs.js";
+import { Events } from "../../components/events.js";
+import { Sizes } from "../../components/sizes.js";
+import { Message } from "../../types/message.js";
+import { Package } from "../../types/package.js";
 import { socket } from "./socket.js";
-import { Events } from "./events.js";
-import { GetMedia } from "./fs.js";
-import { Sizes } from "./sizes.js";
 
 socket.on(Events.IncomingMultimedia, async (pack: Package) => {
     connectWhenReceivedData(socket, pack.meta);
