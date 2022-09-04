@@ -1,0 +1,20 @@
+.div-stretch {
+    height: 100%;
+}
+
+.div-expand {
+    width: 100%;
+}
+
+.div-pad {
+    padding: 5px;
+}
+
+.div-flex {
+    display: flex;
+}
+
+.div-center {
+    justify-content: center;
+    align-items: center;
+}

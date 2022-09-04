@@ -1,1 +1,1 @@
-import "./components/handlers.js";
+import "./components/listeners.js";

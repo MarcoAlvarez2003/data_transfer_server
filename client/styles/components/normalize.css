@@ -1,0 +1,79 @@
+@import url("../fonts/roboto.css");
+
+/* Normalizing */
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+* {
+    box-sizing: border-box;
+    color: #f00 !important;
+    padding: 0;
+    margin: 0;
+}
+
+.button,
+.input {
+    padding: 10px;
+    width: 100%;
+}
+
+.a {
+    margin-bottom: 10px;
+    padding: 5px 0;
+}
+
+.p {
+    word-wrap: break-word;
+    font-size: x-small;
+}
+
+.image,
+.video {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* Theme */
+
+.input {
+    background-color: #000;
+    border: 1px solid #f00;
+    outline: 0 solid #000;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.image,
+.video {
+    border-radius: 10px;
+}
+
+.image:hover,
+.video:hover {
+    box-shadow: 0 0 5px #fff;
+}
+
+.button {
+    background-color: #000;
+    border: 1px solid #f00;
+    outline: 0 solid #000;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.button:hover,
+.input:hover {
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.button:active {
+    background-color: #000;
+    border: 1px solid #fff;
+    color: #fff;
+}

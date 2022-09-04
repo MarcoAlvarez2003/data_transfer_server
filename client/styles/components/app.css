@@ -1,0 +1,35 @@
+.app {
+    height: 100%;
+    width: 100%;
+}
+
+.app__head {
+    display: flex;
+    height: 10%;
+    width: 100%;
+}
+
+.app__body {
+    display: flex;
+    height: 90%;
+    width: 100%;
+}
+
+.app__body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Color Theme */
+
+.app {
+    color: #fff;
+}
+
+.app__head {
+    background-color: #111111;
+    border-bottom: 1px solid #f00;
+}
+
+.app__body {
+    background-color: #1b1b1b;
+}

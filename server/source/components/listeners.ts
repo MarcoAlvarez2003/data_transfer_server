@@ -1,3 +1,4 @@
+import { showConnection, showDisconnect, showMessage, showPackage } from "../debug/conn.js";
 import { socket, connections, findConnIdByNickname } from "./socket.js";
 import { Package } from "../types/package.js";
 import { Message } from "../types/message.js";
@@ -6,10 +7,12 @@ import { Events } from "./events.js";
 socket.on("connection", (client) => {
     connections[client.id] = { nickname: client.id, id: client.id };
 
-    console.log(`New Connection`, connections[client.id]);
+    showConnection(connections[client.id]);
 
     client.on(Events.SendMultimedia, (pack: Package) => {
         const id = findConnIdByNickname(pack.meta.to);
+
+        showPackage(pack);
 
         if (id) {
             if (id === client.id) {
@@ -36,6 +39,8 @@ socket.on("connection", (client) => {
 
     client.on(Events.SendMessage, (msg: Message) => {
         const id = findConnIdByNickname(msg.meta.to);
+
+        showMessage(msg);
 
         if (id) {
             if (id === client.id) {
@@ -81,7 +86,7 @@ socket.on("connection", (client) => {
     });
 
     client.on("disconnect", () => {
-        console.log(`Lost Connection`, connections[client.id]);
+        showDisconnect(connections[client.id]);
 
         delete connections[client.id];
     });
