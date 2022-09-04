@@ -62,22 +62,3 @@ export function createMessageTemplate(message: Message) {
 
     return container;
 }
-
-export async function createFragmentFromDataBase() {
-    const fragment = document.createDocumentFragment();
-    const media = await GetMedia();
-
-    for (const multimedia of Object.values(media)) {
-        const template = createMultimediaTemplate(multimedia);
-
-        template.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-
-            location.assign("/admin.html");
-        });
-
-        fragment.appendChild(template);
-    }
-
-    return fragment;
-}

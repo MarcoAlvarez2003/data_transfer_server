@@ -1,30 +1,19 @@
-import {
-    sendFilesButton,
-    sendMessageButton,
-    connectionInputElement,
-    socketIdInputElement,
-    clientNameInputElement,
-    connectionStateElement,
-    historyElement,
-    fileInputElement,
-    previewElement,
-    messageElement,
-} from "./interface.js";
-
-import { createFragmentFromDataBase, createMultimediaTemplate, createMessageTemplate } from "../../utils/template.js";
+import { createFragmentFromPreview, createTemplateFragmentFromDataBase } from "./utils/template.js";
 import { GetMessage, GetMeta, GetUserName, IsConnected, connectWhenReceivedData } from "./meta.js";
 import { SetMedia, CreateDataBase } from "../../components/database.js";
-import { GetMediaSize, GetMedia } from "./fs.js";
+import { createMessageTemplate } from "../../utils/template.js";
+import { GetMediaSize, GetMultimediaPreview } from "./fs.js";
 import { Events } from "../../components/events.js";
 import { Sizes } from "../../components/sizes.js";
 import { Message } from "../../types/message.js";
 import { Package } from "../../types/package.js";
 import { socket } from "./socket.js";
 
-socket.on(Events.IncomingMultimedia, async (pack: Package) => {
-    connectWhenReceivedData(socket, pack.meta);
+import * as Interface from "./interface.js";
 
-    historyElement.innerHTML = "";
+socket.on(Events.IncomingMultimedia, async (pack: Package) => {
+    Array.from(Interface.historyElement.children).forEach((children) => children.remove());
+    connectWhenReceivedData(socket, pack.meta);
 
     for (const name in pack.data) {
         const file = pack.data[name];
@@ -34,21 +23,18 @@ socket.on(Events.IncomingMultimedia, async (pack: Package) => {
         console.log(`${name} fue guardado correctamente`);
     }
 
-    historyElement.appendChild(await createFragmentFromDataBase());
-
+    Interface.historyElement.appendChild(await createTemplateFragmentFromDataBase());
     socket.emit(Events.MultimediaReceive, pack.meta.from);
 });
 
 socket.on(Events.IncomingMessage, (message: Message) => {
-    messageElement.appendChild(createMessageTemplate(message));
-
+    Interface.messageElement.appendChild(createMessageTemplate(message));
     connectWhenReceivedData(socket, message.meta);
-
     socket.emit(Events.MessageReceived, message.meta.from);
 });
 
 socket.on(Events.MessageReceived, () => {
-    const lastMessage = Array.from(messageElement.children).at(-1);
+    const lastMessage = Array.from(Interface.messageElement.children).at(-1);
 
     if (lastMessage) {
         lastMessage.innerHTML = `<strong>Recibido</strong> ${lastMessage.innerHTML}`;
@@ -59,7 +45,7 @@ socket.on(Events.MessageReceived, () => {
 
 socket.on(Events.MultimediaReceive, () => {
     console.log("Multimedia enviada");
-    previewElement.innerHTML = "";
+    Interface.previewElement.innerHTML = "";
 });
 
 socket.on(Events.MessageNotReceived, () => {
@@ -71,36 +57,36 @@ socket.on(Events.MultimediaNotReceived, () => {
 });
 
 socket.on(Events.NicknameUsed, () => {
-    socketIdInputElement.value = socket.id;
+    Interface.socketIdInputElement.value = socket.id;
 });
 
 socket.on("connect", () => {
-    socketIdInputElement.value = localStorage.getItem("dss:nickname") ?? socket.id;
-    socket.emit(Events.UseNickname, socketIdInputElement.value);
+    Interface.socketIdInputElement.value = localStorage.getItem("dss:nickname") ?? socket.id;
+    socket.emit(Events.UseNickname, Interface.socketIdInputElement.value);
 
     setInterval(() => {
-        socket.emit(Events.Match, connectionInputElement.value);
+        socket.emit(Events.Match, Interface.connectionInputElement.value);
     }, 100);
 });
 
 socket.on(Events.MatchedFailed, () => {
-    connectionStateElement.innerHTML = "Desconectado";
+    Interface.connectionStateElement.innerHTML = "Desconectado";
 });
 
 socket.on(Events.MatchedSuccessFully, () => {
-    connectionStateElement.innerHTML = "Conectado";
+    Interface.connectionStateElement.innerHTML = "Conectado";
 });
 
-socketIdInputElement.addEventListener("change", () => {
-    localStorage.setItem("dss:nickname", socketIdInputElement.value);
-    socket.emit(Events.UseNickname, socketIdInputElement.value);
+Interface.socketIdInputElement.addEventListener("change", () => {
+    localStorage.setItem("dss:nickname", Interface.socketIdInputElement.value);
+    socket.emit(Events.UseNickname, Interface.socketIdInputElement.value);
 });
 
-clientNameInputElement.addEventListener("change", () => {
-    localStorage.setItem("dss:username", clientNameInputElement.value);
+Interface.clientNameInputElement.addEventListener("change", () => {
+    localStorage.setItem("dss:username", Interface.clientNameInputElement.value);
 });
 
-sendMessageButton.addEventListener("click", () => {
+Interface.sendMessageButton.addEventListener("click", () => {
     if (IsConnected()) {
         const message: Message = {
             meta: GetMeta(socket),
@@ -108,20 +94,20 @@ sendMessageButton.addEventListener("click", () => {
             body: GetMessage(),
         };
 
-        messageElement.appendChild(createMessageTemplate(message));
+        Interface.messageElement.appendChild(createMessageTemplate(message));
 
         socket.emit(Events.SendMessage, message);
     }
 });
 
-sendFilesButton.addEventListener("click", async () => {
+Interface.sendFilesButton.addEventListener("click", async () => {
     if (GetMediaSize() > Sizes.MegaByte * 45) {
         return alert(`El paquete que quiere enviar pesa mas de 45MB`);
     }
 
     if (IsConnected()) {
         const packet: Package = {
-            data: await GetMedia(),
+            data: await GetMultimediaPreview(),
             meta: GetMeta(socket),
             name: GetUserName(),
         };
@@ -130,26 +116,16 @@ sendFilesButton.addEventListener("click", async () => {
     }
 });
 
-fileInputElement.addEventListener("change", async () => {
-    const fragment = document.createDocumentFragment();
-    const media = await GetMedia();
-
-    previewElement.innerHTML = "";
-
-    for (const multimedia of Object.values(media)) {
-        const template = createMultimediaTemplate(multimedia);
-
-        fragment.appendChild(template);
-    }
-
-    previewElement.appendChild(fragment);
+Interface.fileInputElement.addEventListener("change", async () => {
+    Array.from(Interface.previewElement.children).forEach((children) => children.remove());
+    Interface.previewElement.appendChild(createFragmentFromPreview(Object.values(await GetMultimediaPreview())));
 });
 
 window.addEventListener("load", async () => {
-    clientNameInputElement.value = localStorage.getItem("dss:username") ?? navigator.platform;
+    Interface.clientNameInputElement.value = localStorage.getItem("dss:username") ?? navigator.platform;
     await CreateDataBase();
 
-    historyElement.append(await createFragmentFromDataBase());
+    Interface.historyElement.append(await createTemplateFragmentFromDataBase());
 });
 
 window.addEventListener("beforeunload", () => {

@@ -3,6 +3,8 @@ import { createElement } from "../../../utils/elements.js";
 import { reset } from "./utils/reset.js";
 function applyPhoneDesign() {
     if (window.matchMedia("(max-width: 500px)").matches) {
+        alert("Soporte para teléfonos en desarrollo");
+        return history.back();
         const showPreviewButton = createElement("button", ["button"]);
         const showMessageButton = createElement("button", ["button"]);
         const showHistoryButton = createElement("button", ["button"]);

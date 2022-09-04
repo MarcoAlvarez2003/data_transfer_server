@@ -1,4 +1,3 @@
-import { GetMedia } from "../components/database.js";
 export function createMultimediaTemplate(multimedia) {
     switch (multimedia.type) {
         case "application/x-msdownload":
@@ -48,18 +47,5 @@ export function createMessageTemplate(message) {
     container.appendChild(name);
     container.appendChild(text);
     return container;
-}
-export async function createFragmentFromDataBase() {
-    const fragment = document.createDocumentFragment();
-    const media = await GetMedia();
-    for (const multimedia of Object.values(media)) {
-        const template = createMultimediaTemplate(multimedia);
-        template.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-            location.assign("/admin.html");
-        });
-        fragment.appendChild(template);
-    }
-    return fragment;
 }
 //# sourceMappingURL=template.js.map
