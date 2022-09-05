@@ -1,7 +1,7 @@
 import { createFragmentFromPreview, createTemplateFragmentFromDataBase } from "./utils/template.js";
 import { GetMessage, GetMeta, GetUserName, IsConnected, connectWhenReceivedData } from "./meta.js";
 import { SetMedia, CreateDataBase } from "../../components/database.js";
-import { createMessageTemplate } from "../../utils/template.js";
+import { createMessageTemplate } from "../../components/template.js";
 import { GetMediaSize, GetMultimediaPreview } from "./fs.js";
 import { socket } from "./socket.js";
 import * as Interface from "./interface.js";

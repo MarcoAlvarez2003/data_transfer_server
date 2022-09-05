@@ -1,4 +1,4 @@
-import { createMultimediaTemplate } from "../../../utils/template.js";
+import { createMultimediaTemplate } from "../../../components/template.js";
 import { GetMedia } from "../../../components/database.js";
 /**
  * Crea un fragmento con eventos desde la base de datos

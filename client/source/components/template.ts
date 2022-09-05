@@ -1,4 +1,3 @@
-import { GetMedia } from "../components/database.js";
 import { Multimedia } from "../types/multimedia.js";
 import { Message } from "../types/message.js";
 

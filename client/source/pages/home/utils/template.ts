@@ -1,4 +1,4 @@
-import { createMultimediaTemplate } from "../../../utils/template.js";
+import { createMultimediaTemplate } from "../../../components/template.js";
 import { GetMedia } from "../../../components/database.js";
 import { Multimedia } from "../../../types/multimedia.js";
 

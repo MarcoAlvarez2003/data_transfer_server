@@ -1,13 +1,13 @@
-import { deleteButtonElement, previewElement } from "./interface.js";
-import { createMultimediaTemplate } from "../../utils/template.js";
+import { createMultimediaTemplate } from "../../components/template.js";
 import { GetMedia, DelMedia } from "../../components/database.js";
+import * as Interface from "./interface.js";
 
 window.addEventListener("load", async () => {
     let currentFileReference!: string | undefined;
     let currentTemplate!: HTMLElement | undefined;
 
     const show = async () => {
-        Array.from(previewElement.children).forEach((children) => children.remove());
+        Array.from(Interface.previewElement.children).forEach((children) => children.remove());
 
         const fragment = document.createDocumentFragment();
         const media = await GetMedia();
@@ -19,8 +19,8 @@ window.addEventListener("load", async () => {
                 currentFileReference = file.name;
                 currentTemplate = template;
 
-                deleteButtonElement.textContent = "Borrar";
-                deleteButtonElement.disabled = false;
+                Interface.deleteButtonElement.textContent = "Borrar";
+                Interface.deleteButtonElement.disabled = false;
 
                 template.style.boxShadow = "0 0 5px #fff";
 
@@ -29,15 +29,15 @@ window.addEventListener("load", async () => {
 
             fragment.appendChild(template);
         }
-        previewElement.appendChild(fragment);
+        Interface.previewElement.appendChild(fragment);
     };
 
-    deleteButtonElement.textContent = "...";
-    deleteButtonElement.disabled = true;
+    Interface.deleteButtonElement.textContent = "...";
+    Interface.deleteButtonElement.disabled = true;
 
     window.addEventListener("click", () => {
-        deleteButtonElement.textContent = "...";
-        deleteButtonElement.disabled = true;
+        Interface.deleteButtonElement.textContent = "...";
+        Interface.deleteButtonElement.disabled = true;
 
         if (currentFileReference) {
             currentFileReference = undefined;
@@ -49,7 +49,7 @@ window.addEventListener("load", async () => {
         }
     });
 
-    deleteButtonElement.addEventListener("click", async () => {
+    Interface.deleteButtonElement.addEventListener("click", async () => {
         if (currentFileReference) {
             await DelMedia(currentFileReference);
 

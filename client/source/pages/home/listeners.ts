@@ -1,7 +1,7 @@
 import { createFragmentFromPreview, createTemplateFragmentFromDataBase } from "./utils/template.js";
 import { GetMessage, GetMeta, GetUserName, IsConnected, connectWhenReceivedData } from "./meta.js";
 import { SetMedia, CreateDataBase } from "../../components/database.js";
-import { createMessageTemplate } from "../../utils/template.js";
+import { createMessageTemplate } from "../../components/template.js";
 import { GetMediaSize, GetMultimediaPreview } from "./fs.js";
 import { Events } from "../../components/events.js";
 import { Sizes } from "../../components/sizes.js";

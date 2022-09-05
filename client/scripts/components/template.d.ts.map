@@ -1,0 +1,1 @@
+{"version":3,"file":"template.d.ts","sourceRoot":"","sources":["../../source/components/template.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,wBAAwB,CAAC;AACpD,OAAO,EAAE,OAAO,EAAE,MAAM,qBAAqB,CAAC;AAE9C,wBAAgB,wBAAwB,CACpC,UAAU,EAAE,UAAU,GACvB,iBAAiB,GAAG,gBAAgB,GAAG,gBAAgB,GAAG,gBAAgB,GAAG,oBAAoB,CA2CnG;AAED,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,kBAYrD"}
