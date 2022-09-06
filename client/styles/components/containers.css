@@ -77,14 +77,6 @@
 
 /* Theme */
 
-.preview {
-    border-right: 1px solid #f00;
-}
-
-.history {
-    border-left: 1px solid #f00;
-}
-
 .preview,
 .history {
     background-color: #191919;

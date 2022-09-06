@@ -1,0 +1,41 @@
+<div class="app">
+    <div class="app__head">
+        <div class="div-pad div-flex div-stretch div-expand">
+            <button
+                class="button"
+                id="show-preview"
+                onclick="document.getElementById(`preview`).parentElement.style.display=`block`;document.getElementById(`chat`).style.display=`none`;document.getElementById(`history`).style.display=`none`"
+            >
+                Vista Previa
+            </button>
+        </div>
+
+        <div class="div-pad div-flex div-stretch div-expand">
+            <button
+                class="button"
+                id="show-messages"
+                onclick="document.getElementById(`preview`).parentElement.style.display=`none`;document.getElementById(`chat`).style.display=`block`;document.getElementById(`history`).style.display=`none`"
+            >
+                Mensajes
+            </button>
+        </div>
+
+        <div class="div-pad div-flex div-stretch div-expand">
+            <button
+                class="button"
+                id="show-history"
+                onclick="document.getElementById(`preview`).parentElement.style.display=`none`;document.getElementById(`chat`).style.display=`none`;document.getElementById(`history`).style.display=`block`"
+            >
+                Archivos
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById(`preview`).parentElement.style.display = `block`;
+        document.getElementById(`history`).style.display = `none`;
+        document.getElementById(`chat`).style.display = `none`;
+    </script>
+
+    <div class="app__body"><%- include("./properties.ejs")%></div>
+</div>

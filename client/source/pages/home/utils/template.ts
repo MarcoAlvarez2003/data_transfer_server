@@ -13,7 +13,7 @@ export async function createTemplateFragmentFromDataBase(): Promise<DocumentFrag
         const template = createMultimediaTemplate(multimedia);
 
         template.addEventListener("contextmenu", () => {
-            location.assign("/admin.html");
+            location.assign("/admin");
         });
 
         fragment.appendChild(template);

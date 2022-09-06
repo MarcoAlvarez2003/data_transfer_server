@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <%- include("./partials/meta/head.ejs") %>
+
+        <link rel="stylesheet" href="./styles/pages/home/index.css" />
+
+        <title>Data Transfer Server</title>
+    </head>
+    <body>
+        <div class="app">
+            <div class="app__head"><%- include("./partials/components/app/head.ejs")%></div>
+            <div class="app__body"><%- include("./partials/components/app/body.ejs")%></div>
+        </div>
+
+        <script src="/socket.io/socket.io.min.js"></script>
+
+        <script src="./scripts/pages/home/main.js" type="module"></script>
+    </body>
+</html>

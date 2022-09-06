@@ -18,3 +18,11 @@
     justify-content: center;
     align-items: center;
 }
+
+.border__red-left {
+    border-left: 1px solid #f00;
+}
+
+.border__red-right {
+    border-right: 1px solid #f00;
+}

@@ -9,7 +9,7 @@ export async function createTemplateFragmentFromDataBase() {
     for (const multimedia of await GetMedia()) {
         const template = createMultimediaTemplate(multimedia);
         template.addEventListener("contextmenu", () => {
-            location.assign("/admin.html");
+            location.assign("/admin");
         });
         fragment.appendChild(template);
     }
